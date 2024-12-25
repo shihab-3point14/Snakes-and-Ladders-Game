@@ -10,8 +10,10 @@ int main(){
     p1.handleConsecutiveSixes(6);
     cout << p1.serialize() << endl;
     Player p2 = p1.deserialize(p1.serialize());
-    cout <<"Hello" << endl;
+    cout << "Hello" << endl;
     p2.move(7);
+    Player p3("tanvir");
+    cout << p3.serialize() << endl;
     cout << p2.serialize() << endl;
 
 

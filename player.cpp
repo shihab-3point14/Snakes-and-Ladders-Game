@@ -1,6 +1,11 @@
 #include "player.h"
 
-Player ::Player(string playerName) : name(playerName), position(1), consecutiveSixes(0) {}
+int Player:: count = 1;
+
+Player ::Player(string playerName) : name(playerName), position(1), consecutiveSixes(0) {
+    player_number = count;
+    count++;
+}
 
 void Player ::move(int diceRoll)
 {
@@ -31,7 +36,7 @@ bool Player ::handleConsecutiveSixes(int diceRoll)
 
 string Player ::serialize() const
 {
-    return name + " " + to_string(position) + " " + to_string(consecutiveSixes);
+    return name + " " + to_string(position) + " " + to_string(consecutiveSixes) + " " + to_string(player_number);
 }
 
 Player Player ::deserialize(const string &data)
@@ -45,3 +50,5 @@ Player Player ::deserialize(const string &data)
     p.consecutiveSixes = consecutiveSixes;
     return p;
 }
+
+
