@@ -4,14 +4,16 @@ using namespace std;
 
 class Player
 {
-private:
+public:
     static int count;
     int player_number;
     string name;
     int position;
     int consecutiveSixes;
+    friend class SnakesAndLaddersBoard;
 
-public:
+
+
     Player(string playerName);
 
     void move(int diceRoll);
@@ -21,5 +23,7 @@ public:
     string serialize() const;
 
     static Player deserialize(const string &data);
+
+    
     
 };
