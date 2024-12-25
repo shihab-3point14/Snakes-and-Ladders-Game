@@ -79,6 +79,7 @@
             outFile << board.serialize();
             outFile.close();
             cout << "Game saved as " << gameId << ".txt\n";
+            Player::count = 1;
         } catch (const exception& e) {
             cerr << e.what() << endl;
         }
@@ -100,9 +101,13 @@
 
             string playerData;
             getline(inFile, playerData);
+            cout << "Check player Data1  : ";
+            cout << playerData << endl;
 
             for (int i = 0; i < numPlayers; ++i) {
                 getline(inFile, playerData);
+                cout << "Check player Data  : ";
+                cout << playerData << endl;
                 players.push_back(Player::deserialize(playerData));
             }
 

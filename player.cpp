@@ -42,11 +42,12 @@ Player Player ::deserialize(const string &data)
 {
     stringstream ss(data);
     string name;
-    int position, consecutiveSixes;
-    ss >> name >> position >> consecutiveSixes;
+    int position, consecutiveSixes,number;
+    ss >> name >> position >> consecutiveSixes >> number;
     Player p(name);
     p.position = position;
     p.consecutiveSixes = consecutiveSixes;
+    p.player_number = number;
     return p;
 }
 
