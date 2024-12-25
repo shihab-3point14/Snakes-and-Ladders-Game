@@ -1,4 +1,4 @@
-#include "SnakesAndLadderBoard.h"
+#include"SnakesAndLadderBoard.h"
 //#include<windows.h>
 
 SnakesAndLaddersBoard::SnakesAndLaddersBoard(int size) : Board(size)
@@ -41,8 +41,13 @@ void SnakesAndLaddersBoard::displayBoard(vector<Player> &players)
             {
                 if (player.position == currentPos)
                 {   
+                    
                     //SetConsoleTextAttribute(h,13);
-                    cout << "[ " << player.name[0] << " ] ";
+                    int color = player.player_number + 40;
+                    
+                    cout << "[";
+                    cout << "\033[" << color << "m " << player.name[0] << " ";
+                    cout << "\033[0m" << "] ";
                     //SetConsoleTextAttribute(h, 1);
                     playerFound = true;
                     break;

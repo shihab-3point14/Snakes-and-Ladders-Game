@@ -1,5 +1,5 @@
-
 #include"board.h"
+
 
 
 class SnakesAndLaddersBoard : public Board
@@ -9,6 +9,7 @@ private:
     // vector<pair<int, char>> snakesAndLadders;
 
 public:
+
     SnakesAndLaddersBoard(int size = 10);
     void displayBoard(vector<Player> &players) override;
 
@@ -18,4 +19,5 @@ public:
     string serialize() const override;
 
     void deserialize(const string &data) override;
+    
 };

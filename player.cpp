@@ -23,7 +23,6 @@ bool Player ::handleConsecutiveSixes(int diceRoll)
             cout << name << " rolled three consecutive 6's! Go back to start.\n";
             position -= 18;
             consecutiveSixes = 0;
-            return false;
         }
         return true;
     }
