@@ -12,6 +12,8 @@ private:
 public:
     Game(const vector<string> &playerNames);
 
+    ~Game();
+
     string generateGameId();
 
     int rollDice();

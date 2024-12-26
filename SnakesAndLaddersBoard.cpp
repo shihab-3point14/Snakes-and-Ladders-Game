@@ -44,7 +44,7 @@ void SnakesAndLaddersBoard::displayBoard(vector<Player> &players)
                     
                     //SetConsoleTextAttribute(h,13);
                     int color = player.player_number + 40;
-                    cout << "color is : " << color << endl;
+
                     
                     cout << "[";
                     cout << "\033[" << color << "m " << player.name[0] << " ";

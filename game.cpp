@@ -1,4 +1,5 @@
 #include"game.h"
+#include<cstdio>
 
     Game::Game(const vector<string>& playerNames) : board(), currentPlayerIndex(0), isPaused(false) {
         gameId = generateGameId();
@@ -6,6 +7,8 @@
             players.push_back(Player(name));
         }
     }
+
+    Game::~Game() { cout << "Game object with ID " << gameId << " is being destroyed.\n"; }
 
     string Game::generateGameId()
     {
@@ -43,6 +46,26 @@
             cout << " rolled a " << diceRoll << endl;
 
             cout << "Current position: " << currentPlayer.position << endl;
+
+            if(currentPlayer.position == 100){
+                cout << "\033[" << color << "m";
+                cout << currentPlayer.name;
+                cout << "\033[0m";
+                cout << " wins the game!" << endl;
+
+                const string d = gameId+".txt";
+                
+                int res = remove(d.c_str());
+                if(res){
+                    cout << "Not handling" << endl;
+                }
+                else{
+                    cout << "File removed" << endl;
+                }
+                
+                isPaused = true;
+                return;
+            }
 
             cout << "Press '1' to continue to the next turn or '2' to pause and return to menu: ";
             string input;
@@ -134,6 +157,7 @@
         while (!isPaused) {
             playTurn();
         }
+        
     }
 
     void Game::displayMenu()
@@ -164,8 +188,14 @@
                     playerNames.push_back(name);
                 }
 
-                Game newGame(playerNames);
-                newGame.startGame();
+                Game* newGame;
+                newGame = new Game(playerNames);
+                newGame->startGame();
+                delete newGame;
+                cout << "deleted" << endl;
+                if(newGame == NULL){
+                    cout << "NULL" << endl;
+                }
             } else if (input == "2") {
                 string gameFile;
                 cout << "Enter the game ID to load (e.g., Game-1.txt): ";
