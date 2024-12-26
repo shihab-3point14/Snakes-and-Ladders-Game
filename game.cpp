@@ -39,9 +39,7 @@
 
         while (canRollAgain) {
             int diceRoll = rollDice();
-            if(currentPlayer.position == 0 && diceRoll == 1){
-                currentPlayer.move(diceRoll);
-            }
+            currentPlayer.move(diceRoll);
             currentPlayer.position = board.applySnakeOrLadder(currentPlayer.position);
 
             board.displayBoard(players);
