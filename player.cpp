@@ -2,7 +2,7 @@
 
 int Player:: count = 1;
 
-Player ::Player(string playerName) : name(playerName), position(1), consecutiveSixes(0) {
+Player ::Player(string playerName) : name(playerName), position(0), consecutiveSixes(0) {
     player_number = count;
     count++;
 }

@@ -29,7 +29,7 @@ void SnakesAndLaddersBoard::displayBoard(vector<Player> &players)
         }
     }
 
-    cout << "\n----------------------------------------\n";
+    cout << "\n-----------------------------------------------------------\n";
     for (int i = getSize() - 1; i >= 0; --i)
     {
         for (int j = 0; j < getSize(); ++j)
@@ -47,7 +47,7 @@ void SnakesAndLaddersBoard::displayBoard(vector<Player> &players)
 
                     
                     cout << "[";
-                    cout << "\033[" << color << "m " << player.name[0] << " ";
+                    cout << "\033[" << color << "m " << "O" << " ";
                     cout << "\033[0m" << "] ";
                     //SetConsoleTextAttribute(h, 1);
                     playerFound = true;
@@ -76,7 +76,7 @@ void SnakesAndLaddersBoard::displayBoard(vector<Player> &players)
         }
         cout << endl;
     }
-    cout << "----------------------------------------\n";
+    cout << "-----------------------------------------------------------\n";
 }
 
 void SnakesAndLaddersBoard::initializeBoard()
@@ -94,12 +94,15 @@ int SnakesAndLaddersBoard::applySnakeOrLadder(int position)
         {
             position = sl.first.second;
             if (sl.second == 'S')
-            {
+            {   
+                cout << endl << endl;
                 cout << "Oh no! A snake! Moving back to " << position << endl;
                 return position;
             }
             else if (sl.second == 'L')
             {
+                cout << endl
+                     << endl;
                 cout << "Great! A ladder! Moving forward to " << position << endl;
                 return position;
             }
