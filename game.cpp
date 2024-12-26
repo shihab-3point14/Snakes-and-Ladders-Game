@@ -3,13 +3,12 @@
 
     Game::Game(const vector<string>& playerNames) : board(), currentPlayerIndex(0), isPaused(false) {
         gameId = generateGameId();
-        cout << "Here game id  is : " << gameId << endl;
         for (const string& name : playerNames) {
             players.push_back(Player(name));
         }
     }
 
-    Game::~Game() { cout << "Game object with ID " << gameId << " is being destroyed.\n"; }
+    Game::~Game() { }
 
     string Game::generateGameId()
     {   
@@ -28,8 +27,8 @@
     }
 
     int Game::rollDice()
-    {
-        return rand() % 6 + 1;
+    {   
+        return (rand()%6) + 1;
     }
 
     void Game::playTurn()
@@ -39,7 +38,17 @@
 
         while (canRollAgain) {
             int diceRoll = rollDice();
-            currentPlayer.move(diceRoll);
+            if(currentPlayer.position == 0){
+                if(diceRoll == 1){
+                    currentPlayer.move(diceRoll);
+                }
+                
+            }
+            else{
+                currentPlayer.move(diceRoll);
+                
+            }
+            if(diceRoll != 6)
             currentPlayer.position = board.applySnakeOrLadder(currentPlayer.position);
 
             board.displayBoard(players);
@@ -53,6 +62,8 @@
 
             cout << "\033[0m";
             cout << " rolled a " << diceRoll << endl;
+
+            canRollAgain = currentPlayer.handleConsecutiveSixes(diceRoll);
 
             cout << "Current position: " << currentPlayer.position << endl;
 
@@ -87,7 +98,11 @@
                 return;
             }
 
-            canRollAgain = currentPlayer.handleConsecutiveSixes(diceRoll);
+            if(currentPlayer.position == 0){
+                canRollAgain = false;
+            }
+
+            
         }
 
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
@@ -133,13 +148,9 @@
 
             string playerData;
             getline(inFile, playerData);
-            cout << "Check player Data1  : ";
-            cout << playerData << endl;
 
-            for (int i = 0; i < numPlayers; ++i) {
+            for (int i = 0; i < numPlayers; i++) {
                 getline(inFile, playerData);
-                cout << "Check player Data  : ";
-                cout << playerData << endl;
                 players.push_back(Player::deserialize(playerData));
             }
 
@@ -169,53 +180,3 @@
         
     }
 
-    // void Game::displayMenu()
-    // {
-    //     string input;
-    //     while (true) {
-    //         cout << "1. Start New Game\n";
-    //         cout << "2. Load Saved Game\n";
-    //         cout << "3. Quit\n";
-    //         cout << "Enter your choice: ";
-    //         getline(cin, input);
-
-    //         if (input == "1") {
-    //             int numPlayers;
-    //             cout << "Enter the number of players (2 to 4): ";
-    //             cin >> numPlayers;
-    //             cin.ignore();
-    //             if (numPlayers < 2 || numPlayers > 4) {
-    //                 cout << "Please enter a valid number of players (2 to 4).\n";
-    //                 continue;
-    //             }
-
-    //             vector<string> playerNames;
-    //             for (int i = 0; i < numPlayers; ++i) {
-    //                 string name;
-    //                 cout << "Enter player " << i + 1 << " name: ";
-    //                 getline(cin, name);
-    //                 playerNames.push_back(name);
-    //             }
-
-    //             Game* newGame;
-    //             newGame = new Game(playerNames);
-    //             newGame->startGame();
-    //             delete newGame;
-    //             cout << "deleted" << endl;
-    //             if(newGame == NULL){
-    //                 cout << "NULL" << endl;
-    //             }
-    //         } else if (input == "2") {
-    //             string gameFile;
-    //             cout << "Enter the game ID to load (e.g., Game-1.txt): ";
-    //             getline(cin, gameFile);
-    //             loadGame(gameFile);
-    //             startGame();
-    //         } else if (input == "3") {
-    //             cout << "Goodbye!\n";
-    //             break;
-    //         } else {
-    //             cout << "Invalid input, try again.\n";
-    //         }
-    //     }
-    // }

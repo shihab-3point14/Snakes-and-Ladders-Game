@@ -42,14 +42,14 @@ void SnakesAndLaddersBoard::displayBoard(vector<Player> &players)
                 if (player.position == currentPos)
                 {   
                     
-                    //SetConsoleTextAttribute(h,13);
+                    
                     int color = player.player_number + 40;
 
                     
                     cout << "[";
                     cout << "\033[" << color << "m " << "O" << " ";
                     cout << "\033[0m" << "] ";
-                    //SetConsoleTextAttribute(h, 1);
+                    
                     playerFound = true;
                     break;
                 }

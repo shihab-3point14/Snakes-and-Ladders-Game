@@ -12,18 +12,19 @@ void menu::show(){
 
         if (input == "1")
         {
-            int numPlayers;
+            string numPlayers;
             cout << "Enter the number of players (2 to 4): ";
             cin >> numPlayers;
             cin.ignore();
-            if (numPlayers < 2 || numPlayers > 4)
+
+            if(numPlayers != "2" && numPlayers != "4" && numPlayers != "3")
             {
                 cout << "Please enter a valid number of players (2 to 4).\n";
                 continue;
             }
-
+            int num = stoi(numPlayers);
             vector<string> playerNames;
-            for (int i = 0; i < numPlayers; ++i)
+            for (int i = 0; i < num; ++i)
             {
                 string name;
                 cout << "Enter player " << i + 1 << " name: ";
@@ -35,11 +36,7 @@ void menu::show(){
             newGame = new Game(playerNames);
             newGame->startGame();
             delete newGame;
-            cout << "deleted" << endl;
-            if (newGame == NULL)
-            {
-                cout << "NULL" << endl;
-            }
+            
         }
         else if (input == "2")
         {
