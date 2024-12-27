@@ -6,7 +6,6 @@ class SnakesAndLaddersBoard : public Board
 {
 private:
     vector<pair<pair<int, int>, char>> snakesAndLadders;
-    // vector<pair<int, char>> snakesAndLadders;
 
 public:
 

@@ -1,5 +1,5 @@
 #include"SnakesAndLadderBoard.h"
-//#include<windows.h>
+
 
 SnakesAndLaddersBoard::SnakesAndLaddersBoard(int size) : Board(size)
 
@@ -9,7 +9,7 @@ SnakesAndLaddersBoard::SnakesAndLaddersBoard(int size) : Board(size)
 
 void SnakesAndLaddersBoard::displayBoard(vector<Player> &players)
 {   
-    //HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+    
     int number = 100;
     for (int i = getSize() - 1; i >= 0; --i)
     {

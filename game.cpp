@@ -1,5 +1,4 @@
 #include"game.h"
-#include<cstdio>
 
     Game::Game(const vector<string>& playerNames) : board(), currentPlayerIndex(0), isPaused(false) {
         gameId = generateGameId();
@@ -67,22 +66,19 @@
 
             cout << "Current position: " << currentPlayer.position << endl;
 
+
             if(currentPlayer.position == 100){
+                cout << endl << endl;
                 cout << "\033[" << color << "m";
                 cout << currentPlayer.name;
                 cout << "\033[0m";
                 cout << " wins the game!" << endl;
+                cout << endl << endl;
 
                 const string d = gameId+".txt";
                 
                 int res = remove(d.c_str());
-                if(res){
-                    cout << "Not handling" << endl;
-                }
-                else{
-                    cout << "File removed" << endl;
-                }
-                
+
                 isPaused = true;
                 return;
             }

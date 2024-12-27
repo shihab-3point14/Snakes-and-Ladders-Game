@@ -4,9 +4,9 @@ void menu::show(){
     string input;
     while (true)
     {
-        cout << "1. Start New Game\n";
-        cout << "2. Load Saved Game\n";
-        cout << "3. Quit\n";
+        cout << "1. Start New Game" << endl;
+        cout << "2. Load Saved Game" << endl;
+        cout << "3. Quit" << endl;
         cout << "Enter your choice: ";
         getline(cin, input);
 
@@ -47,11 +47,11 @@ void menu::show(){
             newGame->loadGame(gameFile);
             newGame->startGame();
             delete newGame;
-            cout << "Game deleted" << endl;
         }
         else if (input == "3")
-        {
-            cout << "Goodbye!\n";
+        {   
+            cout << endl;
+            cout << "Goodbye!" << endl;
             break;
         }
         else
